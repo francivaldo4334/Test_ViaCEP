@@ -28,55 +28,24 @@ class MyViewModel:ViewModel() {
     fun getPlacebyCEP(CEP:String){
 
         viewModelScope.launch {
-            val result = UserCase().getPlacebyCep(CEP) //MyRetrofit().apiService().getPlacebyCEP(CEP)
+            val result = UserCase().getPlacebyCep(CEP)
             try {
                 model = result.toUiModel()
             }catch (e:Exception){
-                Log.i("TAG","error")
+                errorMessage = e.message.toString()
+                Log.i(TAG,"error")
             }
         }
-//        call.enqueue(object : Callback<dataModel>{
-//            override fun onResponse(call: Call<dataModel>, response: Response<dataModel>) {
-//                try {
-//                    model = response.body()!!
-//                    Log.d(TAG,model.localidade)
-//                }catch (e:Exception){
-//                    errorMessage = e.message.toString()
-//                    Log.i(TAG,errorMessage)
-//                }
-//            }
-//
-//            override fun onFailure(call: Call<dataModel>, t: Throwable) {
-//                errorMessage = t.message.toString()
-//                Log.i(TAG,errorMessage)
-//            }
-//        })
     }
     fun getCEPbyPlace(ESTADO:String,CIDADE:String,ENDERECO: String){
         viewModelScope.launch {
-            val result = UserCase().getCepbyPlace(ESTADO,CIDADE,ENDERECO) //MyRetrofit().apiService().getPlacebyCEP(CEP)
+            val result = UserCase().getCepbyPlace(ESTADO,CIDADE,ENDERECO)
             try {
                 modelList = result.toUiModelList()
             }catch (e:Exception){
-                Log.i("TAG","error")
+                errorMessage = e.message.toString()
+                Log.i(TAG,"error")
             }
         }
-//        val call = UserCase().getCepbyPlace(ESTADO,CIDADE,ENDERECO)//MyRetrofit().apiService().getCEPbyPlace(ESTADO,CIDADE,ENDERECO)
-//        call.enqueue(object : Callback<dataModelList>{
-//            override fun onResponse(call: Call<dataModelList>, response: Response<dataModelList>) {
-//                try {
-//                    modelList = response.body()!!
-//                    Log.i(TAG,modelList.toString())
-//                }catch (e:Exception){
-//                    errorMessage = e.message.toString()
-//                    Log.i(TAG,errorMessage)
-//                }
-//            }
-//
-//            override fun onFailure(call: Call<dataModelList>, t: Throwable) {
-//                errorMessage = t.message.toString()
-//                Log.i(TAG,errorMessage)
-//            }
-//        })
     }
 }
