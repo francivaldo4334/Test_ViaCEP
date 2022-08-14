@@ -5,7 +5,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 
-class MyRetrofit {
+object MyRetrofit {
     private val BASE_URL = "https://viacep.com.br/ws/"
     private val retrofit = Retrofit
         .Builder()
